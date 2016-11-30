@@ -1,0 +1,6 @@
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\bin\Release\Domain.dll.config
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\bin\Release\Domain.dll
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\bin\Release\Domain.pdb
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\obj\Release\Domain.csprojResolveAssemblyReference.cache
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\obj\Release\Domain.dll
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\obj\Release\Domain.pdb

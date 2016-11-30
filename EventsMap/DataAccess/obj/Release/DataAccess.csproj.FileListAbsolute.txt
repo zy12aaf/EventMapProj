@@ -1,0 +1,17 @@
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\obj\Release\DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\obj\Release\DataAccess.Migrations.migration1.resources
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\obj\Release\DataAccess.Migrations.migration2.resources
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\obj\Release\DataAccess.Migrations.migrations3.resources
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\obj\Release\DataAccess.csproj.GenerateResource.Cache
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\DataAccess.dll.config
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\DataAccess.dll
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\DataAccess.pdb
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\Domain.dll
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\EntityFramework.dll
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\Domain.pdb
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\EntityFramework.xml
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\obj\Release\DataAccess.dll
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\obj\Release\DataAccess.pdb
+C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\DataAccess\obj\Release\DataAccess.Migrations.migration3.resources

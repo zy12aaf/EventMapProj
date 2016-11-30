@@ -1,0 +1,292 @@
+﻿@using Domain.Enums
+@using Domain.Models
+@model EventsMap.Views.ViewModel.EventResultsSearch
+@{
+    ViewBag.Title = "Index";
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId = "listResults",
+        OnSuccess = "OnSuccess"
+    };
+}
+
+<script>
+    $(function () {
+        $('#datepicker').datepicker();
+    });
+</script>
+
+<input id="pac-input" class="controls" type="text" placeholder="Enter a location">
+
+<div id="mainMapDiv">
+    <div id="mapDiv">
+            
+    </div>
+
+    @using (Ajax.BeginForm("GetResultsBasedOnSearch", ajaxOptions)) {
+        @Html.TextBoxFor(o => o.SearchCriteria.Keyword, new { placeholder = @Html.DisplayNameFor(o => o.SearchCriteria.Keyword) })
+        <br />
+        <br />
+        @Html.DropDownListFor(o => o.SearchCriteria.Region, EnumHelper.GetSelectList(typeof(Region)),"All Regions")
+
+        <input type="hidden" name="postcodeH" id="postcodeH" />
+
+        <br />
+        <br />
+        @*@Html.DropDownListFor(o => o.SearchCriteria.MainAudience, EnumHelper.GetSelectList(typeof(Event.Audience)),
+        "All Audiences")*@
+        <br />
+        <br />
+        @Html.DropDownListFor(o => o.SearchCriteria.Type, EnumHelper.GetSelectList(typeof(Event.EventType)),
+"All Events")
+        <br />
+        <br />
+
+        @Html.DropDownListFor(o => o.SearchCriteria.SearchWithinRadius, EnumHelper.GetSelectList(typeof(Distance)),
+"No Radius Limit")
+        <br />
+        <br />
+
+        <input type="text" id="datepicker" />
+        <br/>
+        <br/>
+        <input type="text" id="postcode" placeholder="Enter a postcode">
+        <br />
+        <br />
+        <input id="submit-button" class="btn btn-success" type="submit" value="Search for event" />
+    }
+
+    <div id="listResults">
+        nmjv
+    </div>
+</div>
+
+@*<input id="addressField" type="text" size="30" placeholder="Enter your Address" />
+<input type="button" id="listAdressBtn" value="Pin Address On Map" />*@
+
+
+<div id="sap"></div>
+<!-- Include Google Maps JS API -->
+<script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyB6BjIj006g_TZySISI5YDajyTR23S5b8g&libraries=places">
+</script>
+
+<script src="~/Scripts/MapScripts.js"></script>
+
+<script>
+    mapEvent = new MapEvent();
+    google.maps.event.addDomListener(window, 'load', OnSuccess);
+    window.onload = initializeButtons;
+
+    function OnSuccess() {
+        //mapEvent.initNewMap();
+        @*mapEvent.createMarkers('@Html.Raw(ViewBag.Json)');*@
+        mapEvent.createMarkers(@Html.Raw(Json.Encode(Model.Results)));
+        //mapEvent.initAutocompleteSearchButton();
+    }
+
+    function initializeButtons() {
+        $('#submit-button').click(function(event) {
+            event.preventDefault();
+            onPostcodeButtonClicked();
+        });
+    }
+
+    //var submitButton = document.getElementById('form0');
+    //submitButton.onsubmit = onPostcodeButtonClicked;
+    //onPostcodeButtonClicked(mapEvent.map, mapEvent.geocoder);
+
+    function onPostcodeButtonClicked(map, geocoder) {
+        var postcode = document.getElementById("postcode")
+        var postcodeHidden = document.getElementById("postcodeH")
+        mapEvent.geocodeAddress(postcode,postcodeHidden);
+    }
+
+    //function dateSelect() {
+    //    alert("t");
+    //    var selected = $('#datepicker').datepicker('getDate');
+
+    //    var format = $.datepicker.formatDate('yy-mm-dd', selected);
+    //    $.ajax({
+    //        url: '/Home/GetResultsBasedOnSearch',
+    //        contectType: 'application/json',
+    //        type: "POST",
+    //        data: JSON.stringify({ "dateOfEvent": format })
+    //    });
+    //}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<script>
+        function initMap() {
+            var map;
+            var geocoder;
+
+            geocoder = new google.maps.Geocoder();
+
+            var latLangIstanbul = new google.maps.LatLng(39.9078, 32.8252);
+
+            var mapOptions = {
+                center: latLangIstanbul,
+                zoom: 10,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var mapElement = document.getElementById('mapDiv');
+
+            map = new google.maps.Map(mapElement, mapOptions);
+
+            function createMarkers() {
+                @foreach (var loc in @Model) {
+                    <text>
+                        var marker = new google.maps.Marker({
+                            position: { lat: @loc.Latitude, lng: @loc.Longtitude },
+                            map: map,
+                            title: '@loc.EventName'
+                        });
+                    </text>
+                }
+            }
+            return createMarkers;
+        }
+
+        var markerCreator = initMap();
+        google.maps.event.addDomListener(window, 'load', markerCreator);
+
+
+
+        document.onload = startButtonEvents();
+
+        //------------------------------------------------------------------------------------------------
+        function listAddresses() {
+            //get text input handler
+            var addressField = document.getElementById('addressField');
+
+            //call the geocoding function
+           geocodeAddress(addressField.value);
+        }
+
+        function geocodeAddress(addressText) {
+            //real essence, send the geocoding request
+            geocoder.geocode({ 'address': addressText }, function (results, status) {
+                //if the service is working properly...
+                if (status == google.maps.GeocoderStatus.OK) {
+                    //show the first result on map
+                    pinpointResult(results[0]);
+                } else {
+                    alert('Cannot geocode because: ' + status);
+                }
+            });
+        }
+
+        function pinpointResult(result) {
+            map.setCenter(result.geometry.location);
+            map.setZoom(16);
+        }
+
+
+
+        //function zoomToIstanbul() {
+        //    var istanbul = new google.maps.LatLng(41.0579, 29.0340);
+        //    map.setCenter(istanbul);
+        //}
+
+        //function zoomToStreet() {
+        //    map.setZoom(18);
+        //}
+
+        //function disableDrag() {
+        //    map.setOptions({ draggable: false });
+        //}
+
+        //function setMaxZoom() {
+        //    map.setOptions({ maxZoom: 12 });
+        //}
+
+        //function setMinZoom() {
+        //    map.setOptions({ minZoom: 5 });
+        //}
+
+        //function changeUI() {
+        //    map.setOptions({ disableDefaultUI: true });
+        //}
+
+        //function disableScroll() {
+        //    map.setOptions({ scrollwheel: false });
+        //}
+
+        function startButtonEvents() {
+            var listAddressBtn = document.getElementById('listAdressBtn');
+            listAddressBtn.addEventListener('click', function () {
+                listAddresses();
+            });
+        }
+
+    </script>*@
