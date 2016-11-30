@@ -1,0 +1,44 @@
+﻿@using Domain.Dto
+@model IEnumerable<EventDto>
+
+<script>
+    function OnSuccess() {
+        //mapEvent.initNewMap();
+        //mapEvent.createMarkers('@Html.Raw(ViewBag.Json)');
+        mapEvent.createMarkers(@Html.Raw(Json.Encode(Model)));
+    }
+</script>
+
+@foreach (EventDto eventDto in Model)
+{
+    <div>
+        <div class="result-main">
+            <h2>
+                <a> @eventDto.EventName </a>
+            </h2>
+            <div>
+                <div>
+                    <div>
+                        <span>@eventDto.EventDate </span>
+                    </div>
+                    <div>
+                        <span><a href="http://worcsapprenticeships.org.uk/venue/nunnery-wood-high-school/">Nunnery Wood High School</a></span>,
+                        <address>
+                            <span>
+                                <span class="address1">@eventDto.Address</span>
+                                <br>
+                                <span class="postal-code">@eventDto.Postcode</span>
+                            </span>
+                        </address>@*<a class="tribe-events-gmap" href="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Spetchley+Road+Worcester+WR5+2LT+United+Kingdom" title="Click to view a Google Map" target="_blank">+ Google Map</a>*@
+                    </div>
+                </div>
+            </div>
+
+            <div class="event-description">
+                <p>@eventDto.</p>
+                <a href="http://worcsapprenticeships.org.uk/event/careers-event-nunnery-wood-high-school/" class="tribe-events-read-more" rel="bookmark">Find out more »</a>
+            </div><!-- .tribe-events-list-event-description -->
+        </div>
+    </div>
+}
+<p>@ViewBag.Json</p>
