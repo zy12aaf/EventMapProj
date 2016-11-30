@@ -1,6 +1,0 @@
-C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\bin\Debug\Domain.dll.config
-C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\bin\Debug\Domain.dll
-C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\bin\Debug\Domain.pdb
-C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\obj\Debug\Domain.csprojResolveAssemblyReference.cache
-C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\obj\Debug\Domain.dll
-C:\Users\yilmazz\Desktop\WorkSection\Eventsmap\EventsMap\Domain\obj\Debug\Domain.pdb
