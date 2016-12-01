@@ -20,9 +20,11 @@ namespace EventsMap.Views.ViewModel
         {
             Results = results;
             SearchCriteria = searchCriteria;
+            searchCriteria.PagingInformation.TotalItems = results.Count();
         }
 
         public IEnumerable<EventDto> Results { get; set; }
+        
         public SearchingModel SearchCriteria{ get; set; }
 
     }

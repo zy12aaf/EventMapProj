@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using Domain;
 using Domain.Dto;
 using Domain.Models;
@@ -24,7 +25,7 @@ namespace DataAccess
             return context.Events.ToList();
         }
 
-        public IEnumerable<EventDto> FindEventWithSearchModel(SearchingModel sm) {
+        public IEnumerable<EventDto> FindEventWithSearchModel(SearchingModel sm, out string jsonPar) {
             var queryBuilder = (from t in context.Events
                                 select t);
             queryBuilder = queryBuilder.Include(o => o.Location);
@@ -48,26 +49,44 @@ namespace DataAccess
                 queryBuilder = queryBuilder.Where(o => o.DateOfEvent.Date == sm.DateOfEvent);
             }
 
+            IEnumerable<Event> list;
+            if (sm.PostCode != null && sm.SearchWithinRadius != null)
+            {
+                list = queryBuilder.ToList();
+                var dist = (int)sm.SearchWithinRadius;
+                list = list.Where(o => o.Location.WithinDistance(sm.PostCode, dist)).ToList();
+            }
+            else
+            {
+                list = queryBuilder;
+            }
+
+            string json = "";
+
             if (sm.PagingInformation != null) {
-                if (!sm.PagingInformation.LoadAll) {
-                    queryBuilder =
+                if (sm.PagingInformation.LoadAll) {
+                    var dtoListt = list.Select(o => new EventDto(
+                        o.Name,
+                        o.Location.Address,
+                        o.Location.Postcode,
+                        o.Location.Latitude,
+                        o.Location.Longtitude,
+                        o.Location.Region,
+                        o.DateOfEvent,
+                        o.Description)).ToList();
+
+                    json = new JavaScriptSerializer().Serialize(dtoListt);
+                }
+                list =
                         queryBuilder
                             .OrderBy(o => o.DateOfEvent)
                             .Skip(sm.PagingInformation.CurrentPage * sm.PagingInformation.ItemsPerPage)
                             .Take(sm.PagingInformation.ItemsPerPage);
-                }
+
+                
             }
 
 
-
-            var list = queryBuilder.ToList();
-
-            if (sm.PostCode != null) {
-                if (sm.SearchWithinRadius != null) {
-                    var dist = (int)sm.SearchWithinRadius;
-                    list = list.Where(o => o.Location.WithinDistance(sm.PostCode, dist)).ToList();
-                }
-            }
 
             var dtoList = list.Select(o => new EventDto(
                 o.Name,
@@ -78,6 +97,8 @@ namespace DataAccess
                 o.Location.Region,
                 o.DateOfEvent,
                 o.Description)).ToList();
+            jsonPar = json;
+
             return dtoList;
         }
 

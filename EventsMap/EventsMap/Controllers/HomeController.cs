@@ -17,8 +17,9 @@ namespace EventsMap.Controllers
         // GET: Home
         public ActionResult Index() {
             var repo = new EventRepo(new EventMapContext());
-            var results = repo.FindEventWithSearchModel(new SearchingModel());
-            ViewBag.Json = new JavaScriptSerializer().Serialize(results);
+            string json = "";
+            var results = repo.FindEventWithSearchModel(new SearchingModel() { PagingInformation = new PagingInformation()}, out json);
+            ViewBag.Json = json;
             EventResultsSearch searchResult = new EventResultsSearch(results, new SearchingModel() { PagingInformation = new PagingInformation() });
 
 
@@ -28,7 +29,6 @@ namespace EventsMap.Controllers
         public PartialViewResult GetResultsBasedOnSearch(EventResultsSearch searchingModel, string datepicker, string postcodeH, string pageNumber = "1") {
             int page = int.Parse(pageNumber);
             searchingModel.SearchCriteria.PagingInformation.CurrentPage = page;
-            searchingModel.SearchCriteria.PagingInformation.LoadAll = false;
 
             var repo = new EventRepo(new EventMapContext());
             if (postcodeH != null) {
@@ -38,15 +38,12 @@ namespace EventsMap.Controllers
                         double.Parse(strings[1]));
                 }
             }
-
-
-            IEnumerable<EventDto> results = repo.FindEventWithSearchModel(searchingModel.SearchCriteria);
+            string json = "";
+            IEnumerable<EventDto> results = repo.FindEventWithSearchModel(searchingModel.SearchCriteria, out json);
 
             EventResultsSearch eventResultsSearch = new EventResultsSearch(results, searchingModel.SearchCriteria);
-            ViewBag.Json = new JavaScriptSerializer().Serialize(results);
+            ViewBag.Json = json;
             return PartialView("_GetResultsBasedOnSearch", eventResultsSearch);                        /*results.ToList())*/
         }
-
-
     }
 }

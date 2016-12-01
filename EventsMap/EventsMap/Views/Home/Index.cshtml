@@ -54,6 +54,11 @@
         <br />
         <br />
         <input id="submit-button" class="btn btn-success" type="submit" value="Search for event" />
+
+        @Html.HiddenFor(o => o.SearchCriteria.PagingInformation.CurrentPage)
+        @Html.HiddenFor(o => o.SearchCriteria.PagingInformation.LoadAll)
+        @Html.HiddenFor(o => o.SearchCriteria.PagingInformation.ItemsPerPage)
+        @Html.HiddenFor(o => o.SearchCriteria.PagingInformation.TotalItems)
     }
 
     <div id="listResults">

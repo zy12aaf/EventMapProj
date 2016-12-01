@@ -26,8 +26,15 @@ namespace Domain
             CurrentPage = currentPage;
         }
 
-        public PagingInformation() : this(0) {
+        //public PagingInformation() : this(0) {
 
+        //}
+
+        public PagingInformation()
+        {
+            LoadAll = true;
+            CurrentPage = 1;
+            ItemsPerPage = 10;
         }
 
         public int GetTotalPages() {
