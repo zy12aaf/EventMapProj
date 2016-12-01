@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Domain;
+using Domain.HelperModel;
 
 namespace EventsMap.Views.HelperModels
 {

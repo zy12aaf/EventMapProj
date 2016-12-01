@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Domain
+namespace Domain.HelperModel
 {
     public class PagingInformation
     {
-        private const int DEFAULT_ITEMS_PER_PAGE = 10;
-        private const int DEFAULT_CURRENT_PAGE = 1;
+        private const int DefaultItemsPerPage = 10;
+        private const int DefaultCurrentPage = 1;
 
         public int TotalItems { get; set; }
         public int ItemsPerPage { get; set; }

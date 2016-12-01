@@ -2,7 +2,6 @@
 using System.Linq;
 using Domain.Models;
 
-
 namespace DataAccess
 {
     public class LocationRepo

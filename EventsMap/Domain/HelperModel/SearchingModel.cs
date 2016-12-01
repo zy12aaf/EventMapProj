@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Domain.Enums;
 using Domain.Models;
 
-namespace Domain
+namespace Domain.HelperModel
 {
     public class SearchingModel
     {

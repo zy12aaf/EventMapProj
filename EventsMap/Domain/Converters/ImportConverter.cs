@@ -1,6 +1,6 @@
 ﻿using Domain.Models;
 
-namespace DataAccess
+namespace Domain.Converters
 {
     public static class ImportConverter
     {
@@ -10,32 +10,33 @@ namespace DataAccess
             {
                 EventId = importModel.Id,
                 //Type
-                Name = importModel.EventName,
-                LocalMpName = importModel.EventLocalMpName,
+                EventName = importModel.EventName,
+                EventLocalMpName = importModel.EventLocalMpName,
                 //EventMedia
                 OpenToPublic = importModel.EventOpenPublic,
-                DateOfEvent = importModel.EventDateTime,
+                EventDate = importModel.EventDate,
+                EventTime = importModel.EventTime,
                 Description = importModel.EventDescription,
                 Attendees = importModel.EventAttendees,
                 //MainAudience
-                ShowOnWebsite = importModel.EventShowOnWebsite,
+                EventShowOnWebsite = importModel.EventShowOnWebsite,
 
                 Arranger = new Arranger()
                 {
                     Id = importModel.Id,
-                    Contact_Name = importModel.ContactName,
-                    Contact_Email = importModel.ContactEmail,
-                    Contact_Phone = importModel.ContactPhone
+                    ContactName = importModel.ContactName,
+                    ContactEmail = importModel.ContactEmail,
+                    ContactPhone = importModel.ContactPhone
                 },
 
                 Location = new Location()
                 {
                     LocationId = importModel.Id,
                     //Address
-                    Postcode = importModel.EventPostcode,
+                    EventPostcode = importModel.EventPostcode,
                     //ContactPostcode?
-                    Latitude = importModel.EventLat,
-                    Longtitude = importModel.EventLng,
+                    EventLat = importModel.EventLat,
+                    EventLng = importModel.EventLng,
                     //Region
                     EventName = importModel.EventName
                 },
@@ -45,9 +46,9 @@ namespace DataAccess
                     Id = importModel.Id,
                     CompanyName = importModel.CompanyName,
                     CompanySize = importModel.CompanySize,
-                    //CompanyTwitterHandle = importModel.CompanyTwitterHandle,
+                    CompanyTwitterHandle = importModel.CompanyTwitterHandle,
                     CompanyWebsite = importModel.CompanyWebsite,
-                    //CompanyFacebookPage = importModel.CompanyFacebookPage
+                    CompanyFacebookPage = importModel.CompanyFacebookPage
                 }
             };
         }

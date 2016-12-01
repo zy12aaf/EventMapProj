@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Domain.Enums;
 
 namespace Domain.Models
 {
     public class Location
     {
-        public int LocationId       {get;set;}
-        public string Address       { get; set; }
-        public string Postcode      {get;set;}
-        public double Latitude     {get;set;}
-        public double Longtitude   {get;set;}
-        public Region Region        {get;set;}
-        public string EventName     { get; set; }
+        public int LocationId {get;set;}
+        public string EventLocation { get; set; }
+        public string EventPostcode {get;set;}
+        public double EventLat {get;set;}
+        public double EventLng {get;set;}
+        public Region EventRegion {get;set;}
+        public string EventName { get; set; }
 
         private double Distance(double lat1, double lon1, double lat2, double lon2)
         {
@@ -36,8 +32,8 @@ namespace Domain.Models
 
         public bool WithinDistance(LatLong latLong, int dist)
         {
-            var lat1 = this.Latitude;
-            var lon1 = this.Longtitude;
+            var lat1 = EventLat;
+            var lon1 = EventLng;
 
             var lat2 = latLong.Latitude;
             var lon2 = latLong.Longtitude;

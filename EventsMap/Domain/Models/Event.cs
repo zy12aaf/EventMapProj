@@ -1,45 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Models
 {
     public class Event
     {
         #region Referencing properties
+        public int? ContactId { get; set; }
+        public Contact Contact { get; set; }
+
+        public int? CompanyId { get; set; }
+        public Company Company { get; set; }
 
         public int? ArrangerId { get; set; }
         public Arranger Arranger { get; set; }
-        public int? LocationID { get; set; }
-        public Location Location { get; set; }
-        public int? CompanyID { get; set; }
-        public Company Company { get; set; }
 
+        public int? LocationId { get; set; }
+        public Location Location { get; set; }
         #endregion
 
         #region Raw properties
-
         public int EventId { get; set; }
         public EventType Type { get; set; }
-        public string Name { get; set; }
-        public string LocalMpName { get; set; }
+        public string EventName { get; set; }
+        public string EventMp { get; set; }
         public bool EventMedia { get; set; }
         public bool OpenToPublic { get; set; }
-        public DateTime DateOfEvent { get; set; }
+        public DateTime EventDate { get; set; }
+        public DateTime EventTime { get; set; }
         public string Description { get; set; }
         public string Attendees { get; set; }
+        public string EventAudience { get; set; }
+        public bool EventShowOnWebsite { get; set; }
+        public DateTime New { get; set; }
+        public DateTime Updated { get; set; }
+        public DateTime Delete { get; set; }
+        public bool IsDelete { get; set; }
         public Audience MainAudience { get; set; }
-        public bool ShowOnWebsite { get; set; }
-
+        public bool EventInvitingLocalMp { get; set; }
+        public string EventLocalMpName { get; set; }
+        public string EntityState { get; set; }
+        public string EntityKey { get; set; }
         #endregion
 
         #region Enums
-
         public enum EventType
         {
             [EnumMember(Value = "Open-Evening")]
@@ -57,7 +62,6 @@ namespace Domain.Models
             [Display(Name = "Parents")]
             Parents
         }
-
         #endregion
     }
 }

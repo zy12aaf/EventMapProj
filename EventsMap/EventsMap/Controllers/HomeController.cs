@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using CsvHelper;
 using DataAccess;
-using Domain;
+using Domain.Converters;
 using Domain.Dto;
+using Domain.HelperModel;
 using Domain.Mappers;
 using Domain.Models;
 using EventsMap.Views.ViewModel;
@@ -58,12 +58,10 @@ namespace EventsMap.Controllers
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase file)
         {
-            string path = null;
-
             if (file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
-                path = AppDomain.CurrentDomain.BaseDirectory + "Upload\\" + fileName;
+                var path = AppDomain.CurrentDomain.BaseDirectory + "Upload\\" + fileName;
                 file.SaveAs(path);
 
                 var csv = new CsvReader(new StreamReader(path));
