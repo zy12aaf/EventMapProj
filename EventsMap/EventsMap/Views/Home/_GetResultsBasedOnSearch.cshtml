@@ -1,18 +1,20 @@
-﻿@using Domain.Dto
-@model IEnumerable<EventDto>
+﻿
+@using Domain.Dto
+@using EventsMap.Views.HelperModels
+@model EventsMap.Views.ViewModel.EventResultsSearch
 
 <script>
     function OnSuccess() {
         //mapEvent.initNewMap();
         //mapEvent.createMarkers('@Html.Raw(ViewBag.Json)');
-        mapEvent.createMarkers(@Html.Raw(Json.Encode(Model)));
+        mapEvent.createMarkers(@Html.Raw(ViewBag.Json));
     }
 </script>
 
-@foreach (EventDto eventDto in Model)
-{
-    <div>
-        <div class="result-main">
+<div id="allEvs">
+    @foreach (EventDto eventDto in Model.Results) {
+
+        <div id="result-main">
             <h2>
                 <a> @eventDto.EventName </a>
             </h2>
@@ -35,10 +37,27 @@
             </div>
 
             <div class="event-description">
-                <p>@eventDto.</p>
+                <p>@eventDto.EventDescription</p>
                 <a href="http://worcsapprenticeships.org.uk/event/careers-event-nunnery-wood-high-school/" class="tribe-events-read-more" rel="bookmark">Find out more »</a>
             </div><!-- .tribe-events-list-event-description -->
         </div>
-    </div>
+    }
+</div>
+
+
+@using (Ajax.BeginForm("GetResultsBasedOnSearch", new AjaxOptions() { UpdateTargetId = "allEvs" })) {
+    @Html.HiddenFor(o => o.SearchCriteria.PagingInformation.ItemsPerPage)
+    @Html.HiddenFor(o => o.SearchCriteria.PagingInformation)
+    @Html.HiddenFor(o => o.SearchCriteria.Region)
+    @Html.HiddenFor(o => o.SearchCriteria.BeginningRange)
+    @Html.HiddenFor(o => o.SearchCriteria.DateOfEvent)
+    @Html.HiddenFor(o => o.SearchCriteria.EndingRange)
+    @Html.HiddenFor(o => o.SearchCriteria.Keyword)
+    @Html.HiddenFor(o => o.SearchCriteria.MainAudience)
+    @Html.HiddenFor(o => o.SearchCriteria.PostCode)
+    @Html.HiddenFor(o => o.SearchCriteria.SearchWithinRadius)
+    @Html.HiddenFor(o => o.SearchCriteria.Type)
+    @Html.PageLinks(Model.SearchCriteria.PagingInformation)
 }
-<p>@ViewBag.Json</p>
+
+@*<p>@ViewBag.Json</p>*@

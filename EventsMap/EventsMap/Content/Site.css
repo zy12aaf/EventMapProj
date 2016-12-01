@@ -31,3 +31,7 @@ textarea {
     height: 200px;
     padding: 0;
 }
+
+.selected {
+    color: red;
+}

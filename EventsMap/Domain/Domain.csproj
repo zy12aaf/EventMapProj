@@ -55,6 +55,7 @@
     <Compile Include="Enums\Distance.cs" />
     <Compile Include="Enums\DistanceOptions.cs" />
     <Compile Include="Enums\Region.cs" />
+    <Compile Include="HelperModel\PagingInformation.cs" />
     <Compile Include="Mappers\ImportMappers.cs" />
     <Compile Include="Models\Arranger.cs" />
     <Compile Include="Models\Company.cs" />
@@ -66,7 +67,7 @@
     <Compile Include="Models\LatLong.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchingModel.cs" />
+    <Compile Include="HelperModel\SearchingModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

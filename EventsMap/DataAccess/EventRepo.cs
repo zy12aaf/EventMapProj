@@ -24,14 +24,12 @@ namespace DataAccess
             return context.Events.ToList();
         }
 
-        public IEnumerable<EventDto> FindEventWithSearchModel(SearchingModel sm)
-        {
+        public IEnumerable<EventDto> FindEventWithSearchModel(SearchingModel sm) {
             var queryBuilder = (from t in context.Events
                                 select t);
             queryBuilder = queryBuilder.Include(o => o.Location);
 
-            if (sm.Keyword != null && sm.Keyword.Trim().Length != 0)
-            {
+            if (sm.Keyword != null && sm.Keyword.Trim().Length != 0) {
                 queryBuilder = queryBuilder.Where(o => o.Location.EventName.ToUpper().Contains(sm.Keyword.ToUpper()));
             }
 
@@ -39,27 +37,34 @@ namespace DataAccess
                 queryBuilder = queryBuilder.Where(o => o.MainAudience == sm.MainAudience);
             }
 
-            if (sm.Region != null)
-            {
+            if (sm.Region != null) {
                 queryBuilder = queryBuilder.Where(o => o.Location.Region == sm.Region);
             }
 
-            if (sm.Type != null)
-            {
+            if (sm.Type != null) {
                 queryBuilder = queryBuilder.Where(o => o.Type == sm.Type);
             }
-            if (sm.DateOfEvent != null)
-            {
+            if (sm.DateOfEvent != null) {
                 queryBuilder = queryBuilder.Where(o => o.DateOfEvent.Date == sm.DateOfEvent);
             }
 
+            if (sm.PagingInformation != null) {
+                if (!sm.PagingInformation.LoadAll) {
+                    queryBuilder =
+                        queryBuilder
+                            .OrderBy(o => o.DateOfEvent)
+                            .Skip(sm.PagingInformation.CurrentPage * sm.PagingInformation.ItemsPerPage)
+                            .Take(sm.PagingInformation.ItemsPerPage);
+                }
+            }
+
+
+
             var list = queryBuilder.ToList();
 
-            if (sm.PostCode != null)
-            {
-                if (sm.SearchWithinRadius != null)
-                {
-                    var dist = (int) sm.SearchWithinRadius;
+            if (sm.PostCode != null) {
+                if (sm.SearchWithinRadius != null) {
+                    var dist = (int)sm.SearchWithinRadius;
                     list = list.Where(o => o.Location.WithinDistance(sm.PostCode, dist)).ToList();
                 }
             }
@@ -73,7 +78,6 @@ namespace DataAccess
                 o.Location.Region,
                 o.DateOfEvent,
                 o.Description)).ToList();
-
             return dtoList;
         }
 
