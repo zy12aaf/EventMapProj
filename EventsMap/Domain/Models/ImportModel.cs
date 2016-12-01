@@ -10,8 +10,8 @@ namespace Domain.Models
 {
     public class ImportModel
     {
-        //public int Id { get; set; }
-        //public string ContactName { get; set; }
+        public int Id { get; set; }
+        public string ContactName { get; set; }
         public string ContactAddressOne { get; set; }
         public string ContactAddressTwo { get; set; }
         public string ContactCity { get; set; }

@@ -45,9 +45,9 @@ namespace DataAccess
                     Id = importModel.Id,
                     CompanyName = importModel.CompanyName,
                     CompanySize = importModel.CompanySize,
-                    CompanyTwitterHandle = importModel.CompanyTwitterHandle,
+                    //CompanyTwitterHandle = importModel.CompanyTwitterHandle,
                     CompanyWebsite = importModel.CompanyWebsite,
-                    CompanyFacebookPage = importModel.CompanyFacebookPage
+                    //CompanyFacebookPage = importModel.CompanyFacebookPage
                 }
             };
         }
