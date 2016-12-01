@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.2.16.3.0\lib\net45\CsvHelper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -46,16 +50,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\ImportConverter.cs" />
     <Compile Include="Dto\EventDto.cs" />
     <Compile Include="Enums\Distance.cs" />
     <Compile Include="Enums\DistanceOptions.cs" />
     <Compile Include="Enums\Region.cs" />
     <Compile Include="HelperModel\PagingInformation.cs" />
+    <Compile Include="Mappers\ImportMappers.cs" />
     <Compile Include="Models\Arranger.cs" />
     <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventEntityInfo.cs" />
     <Compile Include="Models\EventTimestamps.cs" />
+    <Compile Include="Models\ImportModel.cs" />
     <Compile Include="Models\LatLong.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +73,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helper\" />

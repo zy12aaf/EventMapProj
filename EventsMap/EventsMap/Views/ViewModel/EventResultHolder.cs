@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Domain;
 using Domain.Dto;
+using Domain.HelperModel;
 
 namespace EventsMap.Views.ViewModel
 {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Domain;
 using Domain.Dto;
+using Domain.HelperModel;
 using Domain.Models;
 
 namespace EventsMap.Views.ViewModel
