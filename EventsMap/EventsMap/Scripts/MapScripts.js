@@ -6,24 +6,23 @@ function MapEvent() {
     this.mapElement = document.getElementById("mapDiv");
     this.currentLocation = new google.maps.LatLng(39.9078, 32.8252);
     this.mapOptions = {
-        
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     this.geocoder = new google.maps.Geocoder();
     this.map = new google.maps.Map(this.mapElement, this.mapOptions);
 
-    this.initNewMap = function() {
+    this.initNewMap = function () {
         //this.map = new google.maps.Map(this.mapElement, this.mapOptions);
     }
 
-    this.initAutocompleteSearchButton = function() {
+    this.initAutocompleteSearchButton = function () {
         var input = document.getElementById('pac-input');
         this.map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
         var autocomplete = new google.maps.places.Autocomplete(input);
         autocomplete.bindTo('bounds', this.map);
 
-        var tm = function(map, autocomplete) {
+        var tm = function (map, autocomplete) {
             var place = autocomplete.getPlace();
             alert(place == undefined);
             if (!place.geometry) {
@@ -70,12 +69,12 @@ function MapEvent() {
         }
     }
 
-    this.geocodeAddress = function(addressText, hiddenVal) {
+    this.geocodeAddress = function (addressText, hiddenVal) {
         var outer = this;
         var latLong;
         var ad = addressText;
         this.geocoder.geocode({ 'address': addressText.value },
-            function(results, status) {
+            function (results, status) {
                 //if the service is working properly...
                 if (addressText.value.length !== 0) {
                     if (status === google.maps.GeocoderStatus.OK) {
@@ -94,7 +93,7 @@ function MapEvent() {
     }
 
 
-    this.clearAllMarkers = function() {
+    this.clearAllMarkers = function () {
         for (var i = 0; i < this.allMarkers.length; i++) {
             var marker = this.allMarkers[i];
             if (marker != null) {
@@ -105,11 +104,11 @@ function MapEvent() {
     }
 
 }
-    function listAddresses() {
-        //get text input handler
-        var addressField = document.getElementById('addressField');
-        geocodeAddress(addressField.value);
-    }
+function listAddresses() {
+    //get text input handler
+    var addressField = document.getElementById('addressField');
+    geocodeAddress(addressField.value);
+}
 
 
 

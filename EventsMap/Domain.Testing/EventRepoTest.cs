@@ -2,6 +2,7 @@
 using System.Linq;
 using DataAccess;
 using Domain.Enums;
+using Domain.HelperModel;
 using Domain.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

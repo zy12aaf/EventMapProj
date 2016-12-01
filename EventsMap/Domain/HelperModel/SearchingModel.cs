@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using Domain.Enums;
 using Domain.Models;
@@ -7,8 +6,8 @@ using Domain.Models;
 namespace Domain
 {
     public class SearchingModel
-    {public SearchingModel()
-        {
+    {
+        public SearchingModel() {
             BeginningRange = DateTime.MinValue;
             EndingRange = DateTime.MaxValue;
         }
@@ -28,5 +27,6 @@ namespace Domain
         public DateTime? DateOfEvent { get; set; }
         [DisplayName("Radius")]
         public Distance? SearchWithinRadius { get; set; }
+        public PagingInformation PagingInformation { get; set; }
     }
 }

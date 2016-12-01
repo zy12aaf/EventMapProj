@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201611290022464_migrationnew1.Designer.cs">
       <DependentUpon>201611290022464_migrationnew1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612011236304_twitterAndFacebookHandle.cs" />
+    <Compile Include="Migrations\201612011236304_twitterAndFacebookHandle.Designer.cs">
+      <DependentUpon>201612011236304_twitterAndFacebookHandle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611290022464_migrationnew1.resx">
       <DependentUpon>201611290022464_migrationnew1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612011236304_twitterAndFacebookHandle.resx">
+      <DependentUpon>201612011236304_twitterAndFacebookHandle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

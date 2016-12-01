@@ -20,21 +20,21 @@
 
 <div id="mainMapDiv">
     <div id="mapDiv">
-            
+
     </div>
 
     @using (Ajax.BeginForm("GetResultsBasedOnSearch", ajaxOptions)) {
         @Html.TextBoxFor(o => o.SearchCriteria.Keyword, new { placeholder = @Html.DisplayNameFor(o => o.SearchCriteria.Keyword) })
         <br />
         <br />
-        @Html.DropDownListFor(o => o.SearchCriteria.Region, EnumHelper.GetSelectList(typeof(Region)),"All Regions")
+        @Html.DropDownListFor(o => o.SearchCriteria.Region, EnumHelper.GetSelectList(typeof(Region)), "All Regions")
 
         <input type="hidden" name="postcodeH" id="postcodeH" />
 
         <br />
         <br />
         @*@Html.DropDownListFor(o => o.SearchCriteria.MainAudience, EnumHelper.GetSelectList(typeof(Event.Audience)),
-        "All Audiences")*@
+            "All Audiences")*@
         <br />
         <br />
         @Html.DropDownListFor(o => o.SearchCriteria.Type, EnumHelper.GetSelectList(typeof(Event.EventType)),
@@ -48,8 +48,8 @@
         <br />
 
         <input type="text" id="datepicker" />
-        <br/>
-        <br/>
+        <br />
+        <br />
         <input type="text" id="postcode" placeholder="Enter a postcode">
         <br />
         <br />
@@ -57,12 +57,12 @@
     }
 
     <div id="listResults">
-        
+        @Html.Partial("_GetResultsBasedOnSearch", Model);
     </div>
 </div>
 
 @*<input id="addressField" type="text" size="30" placeholder="Enter your Address" />
-<input type="button" id="listAdressBtn" value="Pin Address On Map" />*@
+    <input type="button" id="listAdressBtn" value="Pin Address On Map" />*@
 
 
 <div id="sap"></div>
@@ -81,7 +81,7 @@
     function OnSuccess() {
         //mapEvent.initNewMap();
         @*mapEvent.createMarkers('@Html.Raw(ViewBag.Json)');*@
-        mapEvent.createMarkers(@Html.Raw(Json.Encode(Model.Results)));
+        mapEvent.createMarkers(@Html.Raw(ViewBag.Json));
         //mapEvent.initAutocompleteSearchButton();
     }
 
@@ -97,8 +97,8 @@
     //onPostcodeButtonClicked(mapEvent.map, mapEvent.geocoder);
 
     function onPostcodeButtonClicked(map, geocoder) {
-        var postcode = document.getElementById("postcode")
-        var postcodeHidden = document.getElementById("postcodeH")
+        var postcode = document.getElementById("postcode");
+        var postcodeHidden = document.getElementById("postcodeH");
         mapEvent.geocodeAddress(postcode,postcodeHidden);
     }
 

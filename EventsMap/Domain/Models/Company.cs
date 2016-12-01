@@ -18,7 +18,8 @@ namespace Domain.Models
         public string CompanyName { get; set; }
         public int CompanySize { get; set; }
         public string CompanyWebsite { get; set; }
-
+        public string TwitterHandle { get; set; }
+        public string FacebookWebsite { get; set; }
         #endregion
 
 
