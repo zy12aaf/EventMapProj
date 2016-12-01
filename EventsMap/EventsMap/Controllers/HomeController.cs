@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using CsvHelper;
 using DataAccess;
 using Domain;
 using Domain.Dto;
+using Domain.Mappers;
 using Domain.Models;
 using EventsMap.Views.ViewModel;
 
@@ -50,6 +53,39 @@ namespace EventsMap.Controllers
             return PartialView("_GetResultsBasedOnSearch", results);                        /*results.ToList())*/
         }
 
-        
+        public ActionResult Upload()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase file)
+        {
+            string path = null;
+
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                path = AppDomain.CurrentDomain.BaseDirectory + "Upload\\" + fileName;
+                file.SaveAs(path);
+
+                var csv = new CsvReader(new StreamReader(path));
+                csv.Configuration.RegisterClassMap<ImportMappers>();
+                IEnumerable<ImportModel> eventList = csv.GetRecords<ImportModel>();
+
+                EventRepo eventRepo = new EventRepo(new EventMapContext());
+                foreach (ImportModel imported in eventList)
+                {
+                    Event convertEvents = ImportConverter.ConvertEvents(imported);
+                    eventRepo.InsertEvent(convertEvents);
+                }
+                eventRepo.Save();
+            }
+
+            return View();
+        }
+
+
+
     }
 }

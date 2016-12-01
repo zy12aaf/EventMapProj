@@ -27,7 +27,7 @@ namespace Domain.Models
         public int EventId { get; set; }
         public EventType Type { get; set; }
         public string Name { get; set; }
-        public IEnumerable<string> LocalMpName { get; set; }
+        public string LocalMpName { get; set; }
         public bool EventMedia { get; set; }
         public bool OpenToPublic { get; set; }
         public DateTime DateOfEvent { get; set; }
